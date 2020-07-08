@@ -3,6 +3,7 @@ Plug 'cocopon/iceberg.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 colorscheme iceberg
 
