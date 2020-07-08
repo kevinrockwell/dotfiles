@@ -9,7 +9,6 @@ alias eject='diskutil eject'
 alias starwars="telnet towel.blinkenlights.nl"
 alias random="python3 -c 'import random; print(random.random())'"
 alias airport="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport"
-alias python3.8="/usr/local/opt/python@3.8/bin/python3"
 alias countryroads="cd ~"
 alias pusho='git push origin $(git symbolic-ref --short HEAD)'
 alias pullo='git pull origin $(git symbolic-ref --short HEAD)'
