@@ -4,6 +4,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'terryma/vim-multiple-cursors'
 call plug#end()
 colorscheme iceberg
 
@@ -12,19 +13,21 @@ set nohlsearch
 set number
 set updatetime=100
 
+vnoremap <Space> <nop>
 nnoremap <Space> <nop>
 let mapleader =" "
 map <leader>o :setlocal spell! spelllang=en_us<CR>
+map <leader>s :source %<CR>
+map <leader>i :set nospell<CR>
 tnoremap <C-e> <C-\><C-n>
 nnoremap <C-j> <C-w>w
 
-
 "https://aonemd.github.io/blog/handy-keymaps-in-vim
 "move to the split in the direction shown, or create a new split
-nnoremap <silent> <C-h> :call WinMove('h')<cr>
-nnoremap <silent> <C-j> :call WinMove('j')<cr>
-nnoremap <silent> <C-k> :call WinMove('k')<cr>
-nnoremap <silent> <C-l> :call WinMove('l')<cr>
+nnoremap <silent> <C-h> :call WinMove('h')<CR>
+nnoremap <silent> <C-j> :call WinMove('j')<CR>
+nnoremap <silent> <C-k> :call WinMove('k')<CR>
+nnoremap <silent> <C-l> :call WinMove('l')<CR>
 
 function! WinMove(key)
   let t:curwin = winnr()
