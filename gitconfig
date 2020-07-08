@@ -23,3 +23,5 @@
 	gpgSign = true
 [advice]
 	detachedHead = false
+[pull]
+	rebase = false
