@@ -12,6 +12,7 @@ alias airport="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/C
 alias countryroads="cd ~"
 alias pusho='git push origin $(git symbolic-ref --short HEAD)'
 alias pullo='git pull origin $(git symbolic-ref --short HEAD)'
-
+alias pullm='git pull upstream master'
+alias pullu='git pull upstream $(git symbolic-ref --short HEAD)'
 alias gcc=gcc-10
 
