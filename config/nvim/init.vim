@@ -9,6 +9,7 @@ colorscheme iceberg
 "Settings
 set nohlsearch
 set number
+set updatetime=100
 
 nnoremap <Space> <nop>
 let mapleader =" "
