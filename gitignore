@@ -1,0 +1,15 @@
+*.vscode/
+*.code-workspace
+build/
+__pycache__/
+*.pyc
+.DS_Store
+bin/
+include/
+lib/
+.Python
+pip-selfcheck.json
+venv/
+.venv/
+.idea/
+config/.mono

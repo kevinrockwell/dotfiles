@@ -1,0 +1,25 @@
+# This is Git's per-user configuration file.
+#[user]
+# Please adapt and uncomment the following lines:
+#	name = Kevin Rockwell
+#	email = kevin.n.rockwell@gmail.com
+[user]
+	email = 55220125+kevinrockwell@users.noreply.github.com
+	name = kevinrockwell
+	signingkey = 6E595DD6CBC5061A679B8976429A1DC238683A42
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[core]
+	autocrlf = input
+	excludesfile = ~/.gitignore
+[alias]
+	logg = log --graph --decorate --all --oneline
+[credential]
+	helper = osxkeychain
+[commit]
+	gpgSign = true
+[advice]
+	detachedHead = false
