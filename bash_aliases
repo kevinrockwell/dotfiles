@@ -16,3 +16,4 @@ alias pullm='git pull upstream master'
 alias pullu='git pull upstream $(git symbolic-ref --short HEAD)'
 alias gcc=gcc-10
 
+eval $(thefuck --alias)
