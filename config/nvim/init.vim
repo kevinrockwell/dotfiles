@@ -18,7 +18,6 @@ nnoremap <Space> <nop>
 let mapleader =" "
 map <leader>o :setlocal spell! spelllang=en_us<CR>
 map <leader>s :source %<CR>
-map <leader>i :set nospell<CR>
 tnoremap <C-e> <C-\><C-n>
 nnoremap <C-j> <C-w>w
 
