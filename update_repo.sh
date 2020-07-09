@@ -9,4 +9,5 @@ for file in $FILES; do
 done
 git add -A
 git commit
+git push origin master
 
