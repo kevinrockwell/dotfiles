@@ -19,7 +19,6 @@ let mapleader =" "
 map <leader>o :setlocal spell! spelllang=en_us<CR>
 map <leader>s :source %<CR>
 tnoremap <C-e> <C-\><C-n>
-nnoremap <C-j> <C-w>w
 
 "https://aonemd.github.io/blog/handy-keymaps-in-vim
 "move to the split in the direction shown, or create a new split
