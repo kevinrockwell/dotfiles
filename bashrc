@@ -1,5 +1,5 @@
 export CLICOLOR=1
-export PS1='\[\033[01;36m\]\W$(__git_ps1)\[\033[32m\] $(~/.rvm/bin/rvm-prompt) ▲\[\033[00m\] '
+export PS1='\[\033[01;36m\]\W$(__git_ps1) \[\033[31m\]$(~/.rvm/bin/rvm-prompt)\[\033[32m\] ▲\[\033[00m\] '
 export LSCOLORS="gxcxBxDxexxxxxaBxBhghGh"
 export EDITOR="/usr/local/bin/nvim"
 export BREWEDITOR=$EDITOR
