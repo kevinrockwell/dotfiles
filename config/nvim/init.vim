@@ -5,6 +5,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'luochen1990/rainbow'
 call plug#end()
 colorscheme iceberg
 
@@ -19,6 +20,7 @@ let mapleader =" "
 map <leader>o :setlocal spell! spelllang=en_us<CR>
 map <leader>s :source %<CR>
 tnoremap <C-e> <C-\><C-n>
+let g:rainbow_active = 0
 
 "https://aonemd.github.io/blog/handy-keymaps-in-vim
 "move to the split in the direction shown, or create a new split
