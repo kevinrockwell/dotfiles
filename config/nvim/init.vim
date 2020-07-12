@@ -16,7 +16,7 @@ set updatetime=100
 
 vnoremap <Space> <nop>
 nnoremap <Space> <nop>
-let mapleader =" "
+let mapleader = " "
 map <leader>o :setlocal spell! spelllang=en_us<CR>
 map <leader>s :source %<CR>
 tnoremap <C-e> <C-\><C-n>
