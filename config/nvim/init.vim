@@ -11,14 +11,15 @@ colorscheme iceberg
 
 "Settings
 set nohlsearch
-set number
+set number relativenumber
 set updatetime=100
+set termguicolors
 
 vnoremap <Space> <nop>
 nnoremap <Space> <nop>
 let mapleader = " "
 map <leader>o :setlocal spell! spelllang=en_us<CR>
-map <leader>s :source %<CR>
+map <leader>s :w<CR>:source %<CR>
 tnoremap <C-e> <C-\><C-n>
 let g:rainbow_active = 0
 
