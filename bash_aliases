@@ -1,5 +1,4 @@
 alias v="nvim"
-alias c="clear"
 alias f="echo rip in pieces"
 alias brewup='brew update && brew upgrade; brew cleanup; brew doctor'
 alias ls='ls --color=auto'
@@ -13,7 +12,7 @@ alias countryroads="cd ~"
 alias pusho='git push origin $(git symbolic-ref --short HEAD)'
 alias pullo='git pull origin $(git symbolic-ref --short HEAD)'
 alias pullm='git pull upstream master'
-alias gcc=gcc-10
+alias gcc='gcc-10'
 alias urb='export USE_RVM_PROMPT=$((1-$USE_RVM_PROMPT))'
 alias fv='nvim $(fzf)'
 eval $(thefuck --alias)
