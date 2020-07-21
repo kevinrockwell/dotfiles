@@ -13,7 +13,7 @@ alias countryroads="cd ~"
 alias pusho='git push origin $(git symbolic-ref --short HEAD)'
 alias pullo='git pull origin $(git symbolic-ref --short HEAD)'
 alias pullm='git pull upstream master'
-alias pullu='git pull upstream $(git symbolic-ref --short HEAD)'
 alias gcc=gcc-10
 alias urb='export USE_RVM_PROMPT=$((1-$USE_RVM_PROMPT))'
+alias fv='nvim $(fzf)'
 eval $(thefuck --alias)

@@ -16,4 +16,3 @@ export GPG_TTY=$(tty)
 source ~/.bash_aliases
 source ~/.bash_functions
 source ~/.bash_completion
-
