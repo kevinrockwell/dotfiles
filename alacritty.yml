@@ -100,10 +100,10 @@ font:
     family: Jetbrains Mono
 
     # The `style` can be specified to pick a specific face.
-    #style: Regular
+    style: Light
 
   # Bold font face
-  #bold:
+  bold:
     # Font family
     #
     # If the bold family is not specified, it will fall back to the
@@ -111,10 +111,10 @@ font:
     #family: monospace
 
     # The `style` can be specified to pick a specific face.
-    #style: Bold
+    style: Regular
 
   # Italic font face
-  #italic:
+  italic:
     # Font family
     #
     # If the italic family is not specified, it will fall back to the
@@ -122,10 +122,10 @@ font:
     #family: monospace
 
     # The `style` can be specified to pick a specific face.
-    #style: Italic
+    style: Light Italic
 
   # Bold italic font face
-  #bold_italic:
+  bold_italic:
     # Font family
     #
     # If the bold italic family is not specified, it will fall back to the
@@ -133,7 +133,7 @@ font:
     #family: monospace
 
     # The `style` can be specified to pick a specific face.
-    #style: Bold Italic
+    style: Italic
 
   # Point size
   size: 12.0
@@ -536,12 +536,12 @@ key_bindings:
   #- { key: Home,      mods: Shift,   action: ScrollToTop,    mode: ~Alt       }
   #- { key: End,       mods: Shift,   action: ScrollToBottom, mode: ~Alt       }
 
-#debug:
+debug:
   # Display the time it takes to redraw each frame.
   #render_timer: false
 
   # Keep the log file after quitting Alacritty.
-  #persistent_logging: false
+  persistent_logging: false
 
   # Log level
   #
