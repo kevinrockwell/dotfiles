@@ -1,4 +1,4 @@
-FILES=".alacritty.yml .bash_aliases .bash_completion .bash_functions .bash_profile .bashrc .config .gitconfig .gitignore"
+FILES=".bash_aliases .bash_completion .bash_functions .bash_profile .bashrc .config .gitconfig .gitignore"
 
 for file in $FILES; do
   if [[ -r ~/$file ]] ; then
