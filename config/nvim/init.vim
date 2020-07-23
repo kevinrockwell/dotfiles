@@ -1,32 +1,46 @@
 call plug#begin(stdpath('data') . '/plugged')
-Plug 'cocopon/iceberg.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'luochen1990/rainbow'
+Plug 'cocopon/iceberg.vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'luochen1990/rainbow'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
-colorscheme iceberg
 
 "Settings
+set background=dark
+set clipboard=unnamed
+set colorcolumn=80
 set nohlsearch
 set number relativenumber
-set updatetime=100
+set smartindent
 set termguicolors
+set updatetime=100
 
-vnoremap <Space> <nop>
-nnoremap <Space> <nop>
+"Use spaces instead of tabs
+set expandtab
+set shiftwidth=4
+set tabstop=4
+
+colorscheme iceberg
+highlight ColorColumn ctermbg=235 guibg=#1e2132
+
 let mapleader = " "
+let g:rainbow_active=0
+
+"Keymaps
 map <leader>o :setlocal spell! spelllang=en_us<CR>
 map <leader>s :w<CR>:source %<CR>
+
 tnoremap <C-e> <C-\><C-n>
-let g:rainbow_active = 0
+
+nnoremap <Space> <nop>
 
 "https://aonemd.github.io/blog/handy-keymaps-in-vim
-"move to the split in the direction shown, or create a new split
+"Move to the split in the direction shown, or create a new split
 nnoremap <silent> <C-h> :call WinMove('h')<CR>
 nnoremap <silent> <C-j> :call WinMove('j')<CR>
 nnoremap <silent> <C-k> :call WinMove('k')<CR>
@@ -45,3 +59,6 @@ function! WinMove(key)
   endif
 endfunction
 
+"Filetype specific config
+autocmd Filetype ruby setlocal tabstop=2 softtabstop=2
+autocmd Filetype python setlocal colorcolumn=100
