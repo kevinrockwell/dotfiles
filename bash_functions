@@ -25,5 +25,8 @@ function invert () {
 function av() {
     [[ -r "venv/bin/activate" ]] && . venv/bin/activate && return 0
     [[ -r ".venv/bin/activate" ]] && . .venv/bin/activate && return 0
+    git_base=$(git rev-parse --show-toplevel)
+    [[ -r $git_base/venv/bin/activate ]] && . $git_base/venv/bin/activate && return 0
+    [[ -r $git_base/.venv/bin/activate ]] && . $git_base/.venv/bin/activate && return 0 
     echo "No virtual environment found" && return 1
 }
