@@ -13,6 +13,7 @@ call plug#end()
 
 "Map Leader
 let mapleader = " "
+nnoremap <space> <Nop>
 
 "vim Settings
 set background=dark
@@ -30,9 +31,6 @@ set updatetime=100
 let g:rainbow_active=0
 
 "coc
-"Confirm completion with <cr>
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
 "Confirm first item on <cr> if nothing is selected
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 
@@ -65,8 +63,8 @@ map <leader>s :w<CR>:source %<CR>
 "Use Tab/S-Tab to change indentation
 nnoremap <Tab> >>
 nnoremap <S-Tab> <<
-vnoremap <Tab> >
-vnoremap <S-Tab> <
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
 
 "Use C-e to enter normal mode in terminal
 tnoremap <C-e> <C-\><C-n>

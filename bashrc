@@ -13,8 +13,12 @@ PS1='\[\033[01;36m\]\W\[\033[33m\]$(__git_ps1)\[\033[31m\]$(rvm_prompt)\[\033[32
 USE_RVM_PROMPT=0
 
 export CC CLICOLOR CXX EDITOR GPG_TTY LSCOLORS PATH PS1 USE_RVM_PROMPT
+export NVM_DIR="$HOME/.nvm"
 
+# Load version management
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
+
 source ~/.bash_aliases
 source ~/.bash_functions
 source ~/.bash_completion
