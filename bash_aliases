@@ -15,4 +15,5 @@ alias pullm='git pull upstream master'
 alias gcc='gcc-10'
 alias urb='export USE_RVM_PROMPT=$((1-$USE_RVM_PROMPT))'
 alias fv='nvim $(fzf)'
+alias be='bundle exec'
 eval $(thefuck --alias)

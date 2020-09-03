@@ -39,7 +39,7 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Symbol renaming.
-map <leader>n <Plug>(coc-rename)
+nmap <leader>n <Plug>(coc-rename)
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -57,8 +57,9 @@ highlight ColorColumn ctermbg=235 guibg=#1e2132
 
 
 "Keymaps
-map <leader>o :setlocal spell! spelllang=en_us<CR>
-map <leader>s :w<CR>:source %<CR>
+nmap <leader>o :setlocal spell! spelllang=en_us<CR>
+nmap <leader>s :w<CR>:source %<CR>
+nmap <leader>r :RainbowToggle<CR>
 
 "Use Tab/S-Tab to change indentation
 nnoremap <Tab> >>
@@ -90,5 +91,7 @@ function! WinMove(key)
 endfunction
 
 "Filetype specific config
-autocmd Filetype ruby setlocal tabstop=2 softtabstop=2
+autocmd Filetype haml setlocal tabstop=4 softtabstop=4
+" autocmd Filetype ruby setlocal tabstop=2 softtabstop=2
 autocmd Filetype python setlocal colorcolumn=100
+autocmd Filetype yaml setlocal tabstop=2 softtabstop=2
