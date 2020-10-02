@@ -26,6 +26,9 @@ set smartindent
 set termguicolors
 set updatetime=100
 
+"set python version
+let g:python3_host_prog="/usr/local/bin/python3"
+
 "Plugin settings
 "Disable rainbow parentheses by default
 let g:rainbow_active=0

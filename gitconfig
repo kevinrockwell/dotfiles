@@ -17,6 +17,7 @@
 	excludesfile = ~/.gitignore
 [alias]
 	logg = log --graph --decorate --all --oneline
+	logs = log --oneline
 [credential]
 	helper = osxkeychain
 [commit]
