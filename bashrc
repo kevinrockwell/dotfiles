@@ -1,21 +1,34 @@
-rvm_prompt () { local prompt=$(~/.rvm/bin/rvm-prompt);  [[ -n $prompt && 1 -eq $USE_RVM_PROMPT ]] && printf " ${prompt}"; }
-
+# Basic Config
 CC="/usr/local/bin/gcc-10"
 CLICOLOR=1
 CXX="/usr/local/bin/g++-10"
 EDITOR="/usr/local/bin/nvim"
-GPG_TTY=$(tty)
 LSCOLORS="gxcxBxDxexxxxxaBxBhghGh"
+NVM_DIR="$HOME/.nvm"
+export CC CLICOLOR CXX EDITOR LSCOLORS NVM_DIR
+
+# Bash Settings
+HISTCONTROL=erasedups
+HISTFILESIZE=
+HISTSIZE=
+PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+export HISTCONTROL HISTFILESIZE HISTSIZE PROMPT_COMMAND
+
+# Make pinentry work for unlocking GPG keys
+export GPG_TTY=$(tty)
+
+# Make path
 PATH="$PATH:$HOME/.rvm/bin"
 PATH="/usr/local/bin:/usr/local/sbin:$PATH"
-PATH="/usr/local/opt/coreutils/libexec/gnubin/:$PATH"
-PS1='\[\033[01;36m\]\W\[\033[33m\]$(__git_ps1)\[\033[31m\]$(rvm_prompt)\[\033[32m\] ▲\[\033[00m\] '
+export PATH="/usr/local/opt/coreutils/libexec/gnubin/:$PATH"
+
+# Custom Prompt
+rvm_prompt () { local prompt=$(~/.rvm/bin/rvm-prompt);  [[ -n $prompt && 1 -eq $USE_RVM_PROMPT ]] && printf " ${prompt}"; }
 USE_RVM_PROMPT=0
+PS1='\[\033[01;36m\]\W\[\033[33m\]$(__git_ps1)\[\033[31m\]$(rvm_prompt)\[\033[32m\] ▲\[\033[00m\] '
+export PS1 USE_RVM_PROMPT
 
-export CC CLICOLOR CXX EDITOR GPG_TTY LSCOLORS PATH PS1 USE_RVM_PROMPT
-export NVM_DIR="$HOME/.nvm"
-
-# Load version management
+# Load language version management
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
 
