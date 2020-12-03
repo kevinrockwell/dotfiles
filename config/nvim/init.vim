@@ -63,6 +63,7 @@ highlight ColorColumn ctermbg=235 guibg=#1e2132
 nmap <leader>o :setlocal spell! spelllang=en_us<CR>
 nmap <leader>s :w<CR>:source %<CR>
 nmap <leader>r :RainbowToggle<CR>
+nnoremap c "_c
 
 "Use Tab/S-Tab to change indentation
 nnoremap <Tab> >>
@@ -95,6 +96,6 @@ endfunction
 
 "Filetype specific config
 autocmd Filetype haml setlocal tabstop=4 softtabstop=4
-" autocmd Filetype ruby setlocal tabstop=2 softtabstop=2
+autocmd Filetype ruby setlocal tabstop=2 softtabstop=2
 autocmd Filetype python setlocal colorcolumn=100
 autocmd Filetype yaml setlocal tabstop=2 softtabstop=2
