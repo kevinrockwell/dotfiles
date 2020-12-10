@@ -38,17 +38,17 @@ let g:rainbow_active=0
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 
 "Use tab to navigate completion list
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
 " Symbol renaming.
 nmap <leader>n <Plug>(coc-rename)
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gy <Plug>(coc-type-definition)
 
 "Use spaces instead of tabs
 set expandtab
@@ -61,15 +61,15 @@ highlight ColorColumn ctermbg=235 guibg=#1e2132
 
 "Keymaps
 nmap <leader>o :setlocal spell! spelllang=en_us<CR>
-nmap <leader>s :w<CR>:source %<CR>
 nmap <leader>r :RainbowToggle<CR>
+nmap <leader>s :w<CR>:source %<CR>
 nnoremap c "_c
 
 "Use Tab/S-Tab to change indentation
-nnoremap <Tab> >>
 nnoremap <S-Tab> <<
-vnoremap <Tab> >gv
+nnoremap <Tab> >>
 vnoremap <S-Tab> <gv
+vnoremap <Tab> >gv
 
 "Use C-e to enter normal mode in terminal
 tnoremap <C-e> <C-\><C-n>
@@ -95,8 +95,8 @@ function! WinMove(key)
 endfunction
 
 "Filetype specific config
-autocmd Filetype haml setlocal tabstop=4 softtabstop=4
-autocmd Filetype ruby setlocal tabstop=2 softtabstop=2
-autocmd Filetype python setlocal colorcolumn=100
-autocmd Filetype yaml setlocal tabstop=2 softtabstop=2
 autocmd Filetype gitcommit setlocal spell spelllang=en_us
+autocmd Filetype haml setlocal tabstop=4 softtabstop=4
+autocmd Filetype python setlocal colorcolumn=100
+autocmd Filetype ruby setlocal tabstop=2 softtabstop=2
+autocmd Filetype yaml setlocal tabstop=2 softtabstop=2
