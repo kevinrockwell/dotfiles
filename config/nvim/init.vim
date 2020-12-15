@@ -20,6 +20,7 @@ set background=dark
 set clipboard=unnamed
 set colorcolumn=80
 set nohlsearch
+set nowrap
 set number relativenumber
 set pyxversion=3
 set smartindent
@@ -98,5 +99,6 @@ endfunction
 autocmd Filetype gitcommit setlocal spell spelllang=en_us
 autocmd Filetype haml setlocal tabstop=4 softtabstop=4
 autocmd Filetype python setlocal colorcolumn=100
-autocmd Filetype ruby setlocal tabstop=2 softtabstop=2
-autocmd Filetype yaml setlocal tabstop=2 softtabstop=2
+autocmd Filetype ruby,yaml setlocal tabstop=2 softtabstop=2
+autocmd BufEnter * if &filetype == "" | setlocal wrap | endif 
+autocmd Filetype text,markdown setlocal wrap
