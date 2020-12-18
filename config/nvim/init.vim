@@ -9,6 +9,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-crystal/vim-crystal'
 call plug#end()
 
 "Map Leader
@@ -61,6 +62,7 @@ highlight ColorColumn ctermbg=235 guibg=#1e2132
 
 
 "Keymaps
+nmap <leader>l :execute ":!command black '" . expand('%:p') . "'"<CR>
 nmap <leader>o :setlocal spell! spelllang=en_us<CR>
 nmap <leader>r :RainbowToggle<CR>
 nmap <leader>s :w<CR>:source %<CR>
@@ -96,9 +98,10 @@ function! WinMove(key)
 endfunction
 
 "Filetype specific config
+autocmd BufEnter * if count(["", "markdown", "text"], &filetype) == 0 | setlocal nowrap | endif
+autocmd BufEnter * if count(["", "markdown", "text"], &filetype) == 1 | noremap <buffer> K :!open dict:///<cword><cr> | endif
+autocmd BufEnter * if count(["", "markdown", "text"], &filetype) == 1 | setlocal wrap | endif 
 autocmd Filetype gitcommit setlocal spell spelllang=en_us
 autocmd Filetype haml setlocal tabstop=4 softtabstop=4
 autocmd Filetype python setlocal colorcolumn=100
 autocmd Filetype ruby,yaml setlocal tabstop=2 softtabstop=2
-autocmd BufEnter * if &filetype == "" | setlocal wrap | endif 
-autocmd Filetype text,markdown setlocal wrap
