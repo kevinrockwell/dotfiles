@@ -26,3 +26,5 @@
 	detachedHead = false
 [pull]
 	rebase = false
+[init]
+	defaultBranch = main

@@ -21,6 +21,7 @@ set background=dark
 set clipboard=unnamed
 set colorcolumn=80
 set nohlsearch
+set nomodelineexpr
 set nowrap
 set number relativenumber
 set pyxversion=3
@@ -64,9 +65,11 @@ highlight ColorColumn ctermbg=235 guibg=#1e2132
 "Keymaps
 nmap <leader>l :execute ":!command black '" . expand('%:p') . "'"<CR>
 nmap <leader>o :setlocal spell! spelllang=en_us<CR>
+nmap <leader>p :execute ":!command pandoc '" . expand('%:p') . "' --from=gfm --pdf-engine=wkhtmltopdf --output '" . expand('%:r') . ".pdf' && open '" . expand('%:r') . ".pdf'"<CR>
 nmap <leader>r :RainbowToggle<CR>
 nmap <leader>s :w<CR>:source %<CR>
 nnoremap c "_c
+nnoremap x "_x
 
 "Use Tab/S-Tab to change indentation
 nnoremap <S-Tab> <<
