@@ -107,4 +107,4 @@ autocmd BufEnter * if count(["", "markdown", "text"], &filetype) == 1 | setlocal
 autocmd Filetype gitcommit setlocal spell spelllang=en_us
 autocmd Filetype haml setlocal tabstop=4 softtabstop=4
 autocmd Filetype python setlocal colorcolumn=100
-autocmd Filetype ruby,yaml setlocal tabstop=2 softtabstop=2
+autocmd Filetype ruby,yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
