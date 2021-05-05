@@ -1,3 +1,5 @@
 config/**/.*
 config/coc/
 config/gh/hosts.yml
+config/gh/state.yml
+config/nvim/Ditto/
