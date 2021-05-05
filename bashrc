@@ -23,7 +23,10 @@ PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin/:$PATH"
 
 # Custom Prompt
-rvm_prompt () { local prompt=$(~/.rvm/bin/rvm-prompt);  [[ -n $prompt && 1 -eq $USE_RVM_PROMPT ]] && printf " ${prompt}"; }
+rvm_prompt () {
+    local prompt=$(~/.rvm/bin/rvm-prompt)
+    [[ -n $prompt && 1 -eq $USE_RVM_PROMPT ]] && printf " ${prompt}"
+}
 USE_RVM_PROMPT=0
 PS1='\[\033[01;36m\]\W\[\033[33m\]$(__git_ps1)\[\033[31m\]$(rvm_prompt)\[\033[32m\] ▲\[\033[00m\] '
 export PS1 USE_RVM_PROMPT
