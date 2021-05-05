@@ -1,10 +1,14 @@
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'cocopon/iceberg.vim'
+Plug 'dbmrq/vim-ditto'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 Plug 'luochen1990/rainbow'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'preservim/vim-pencil'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
@@ -62,10 +66,10 @@ colorscheme iceberg
 highlight ColorColumn ctermbg=235 guibg=#1e2132
 
 
-"Keymaps
+"Generic Keymaps
 nmap <leader>l :execute ":!command black '" . expand('%:p') . "'"<CR>
 nmap <leader>o :setlocal spell! spelllang=en_us<CR>
-nmap <leader>p :execute ":!command pandoc '" . expand('%:p') . "' --from=gfm --pdf-engine=wkhtmltopdf --output '" . expand('%:r') . ".pdf' && open '" . expand('%:r') . ".pdf'"<CR>
+nmap <leader>p :w<CR>:execute ":!command pandoc '" . expand('%:p') . "' --from=gfm --pdf-engine=wkhtmltopdf --output '" . expand('%:r') . ".pdf' && open '" . expand('%:r') . ".pdf'"<CR>
 nmap <leader>r :RainbowToggle<CR>
 nmap <leader>s :w<CR>:source %<CR>
 nnoremap c "_c
@@ -100,11 +104,50 @@ function! WinMove(key)
   endif
 endfunction
 
+" Writing Config
+let g:pencil#wrapModeDefault = 'soft'
+let s:write_mode = 0
+
+
+function! s:write_toggle()
+    PencilToggle
+    ToggleDitto
+    let s:write_mode = ! s:write_mode
+    if s:write_mode
+        Limelight
+        setlocal spell spelllang=en_us
+    else
+        Limelight!
+        setlocal nospell
+    endif
+endfunction
+
+"Init writing related plugins with Goyo 
+nmap <leader>g :Goyo<CR>
+autocmd! User GoyoEnter call s:write_toggle()
+autocmd! User GoyoLeave call s:write_toggle()
+
+"vim-ditto keymaps
+nmap ]d <Plug>DittoNext
+nmap [d <Plug>DittoPrev
+nmap +d <Plug>DittoGood
+nmap _d <Plug>DittoBad
+nmap =d <Plug>DittoMore
+nmap -d <Plug>DittoLess
+
+
 "Filetype specific config
-autocmd BufEnter * if count(["", "markdown", "text"], &filetype) == 0 | setlocal nowrap | endif
-autocmd BufEnter * if count(["", "markdown", "text"], &filetype) == 1 | noremap <buffer> K :!open dict:///<cword><cr> | endif
-autocmd BufEnter * if count(["", "markdown", "text"], &filetype) == 1 | setlocal wrap | endif 
-autocmd Filetype gitcommit setlocal spell spelllang=en_us
-autocmd Filetype haml setlocal tabstop=4 softtabstop=4
-autocmd Filetype python setlocal colorcolumn=100
-autocmd Filetype ruby,yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
+if !exists("autocmds_loaded")
+    let autocmds_loaded = 1
+    autocmd Filetype markdown,text noremap <buffer> K :!open dict:///<cword><cr> 
+                \ | setlocal wrap
+    autocmd BufLeave if count(["markdown", "text"], &filetype) == 1 
+                \ | setlocal nowrap 
+                \ | nunmap K 
+                \ | endif
+    autocmd Filetype gitcommit setlocal spell spelllang=en_us
+    autocmd Filetype haml setlocal tabstop=4 softtabstop=4
+    autocmd Filetype python setlocal colorcolumn=100 
+                \ | nnoremap <buffer> <leader>p :execute ":!command python3 " . expand('%:p')<CR>
+    autocmd Filetype ruby,yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
+endif
