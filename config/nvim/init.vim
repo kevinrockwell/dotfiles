@@ -1,3 +1,5 @@
+"  init.vim
+"  TODO: Fix up / organize autocmds
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'cocopon/iceberg.vim'
@@ -6,6 +8,7 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'lervag/vimtex'
 Plug 'luochen1990/rainbow'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/vim-pencil'
@@ -16,11 +19,10 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-crystal/vim-crystal'
 call plug#end()
 
-"Map Leader
 let mapleader = " "
 nnoremap <space> <Nop>
+let maplocalleader = "\\"
 
-"vim Settings
 set background=dark
 set clipboard=unnamed
 set colorcolumn=80
@@ -34,31 +36,13 @@ set spellfile=~/.config/nvim/spell/en.utf-8.add
 set termguicolors
 set updatetime=100
 
-"set python version
+syntax enable
+syntax on
+
+"set python version to system default
 let g:python3_host_prog="/usr/local/bin/python3"
 
-"Plugin settings
-"Disable rainbow parentheses by default
-let g:rainbow_active=0
-
-"coc
-"Confirm first item on <cr> if nothing is selected
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
-
-"Use tab to navigate completion list
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-
-" Symbol renaming.
-nmap <leader>n <Plug>(coc-rename)
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gy <Plug>(coc-type-definition)
-
-"Use spaces instead of tabs
+" Use spaces instead of tabs
 set expandtab
 set shiftwidth=4
 set tabstop=4
@@ -66,27 +50,34 @@ set tabstop=4
 colorscheme iceberg
 highlight ColorColumn ctermbg=235 guibg=#1e2132
 
-
-"Generic Keymaps
+" Generic Keymaps
+nmap <C-p> :FZF<cr>
+nmap <leader>, :bprev<cr>
+nmap <leader>. :bnext<cr>
+nmap <leader>w :bdel<cr>
 nmap <leader>l :execute ":!command black '" . expand('%:p') . "'"<CR>
 nmap <leader>o :setlocal spell! spelllang=en_us<CR>
-nmap <leader>p :w<CR>:execute ":!command pandoc '" . expand('%:p') . "' --from=gfm --pdf-engine=wkhtmltopdf --output '" . expand('%:r') . ".pdf' && open '" . expand('%:r') . ".pdf'"<CR>
+nmap <leader>p :w<CR>:execute ":!command pandoc '" . expand('%:p') . "' --from=gfm --pdf-engine=wkhtmltopdf --output '" . expand('%:r') . ".pdf' && displayline 1 '" . expand('%:r') . ".pdf'"<CR>
 nmap <leader>r :RainbowToggle<CR>
 nmap <leader>s :w<CR>:source %<CR>
+nnoremap C "_C
 nnoremap c "_c
 nnoremap x "_x
+vnoremap c "_c
+vnoremap x "_x
+vmap D "_d
 
-"Use Tab/S-Tab to change indentation
+" Use Tab/S-Tab to change indentation
 nnoremap <S-Tab> <<
 nnoremap <Tab> >>
 vnoremap <S-Tab> <gv
 vnoremap <Tab> >gv
 
-"Use C-e to enter normal mode in terminal
+" Use C-e to enter normal mode in terminal
 tnoremap <C-e> <C-\><C-n>
 
-"https://aonemd.github.io/blog/handy-keymaps-in-vim
-"Move to the split in the direction shown, or create a new split
+" https://aonemd.github.io/blog/handy-keymaps-in-vim
+" Move to the split in the direction shown, or create a new split
 nnoremap <silent> <C-h> :call WinMove('h')<CR>
 nnoremap <silent> <C-j> :call WinMove('j')<CR>
 nnoremap <silent> <C-k> :call WinMove('k')<CR>
@@ -105,10 +96,36 @@ function! WinMove(key)
   endif
 endfunction
 
-" Writing Config
+
+" Plugin settings
+"
+" Disable rainbow parentheses by default
+let g:rainbow_active=0
+
+" coc
+" Confirm first item on <cr> if nothing is selected
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+
+" Use tab to navigate completion list
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+
+" Call formatter
+nmap <leader>f <Plug>(coc-format)
+vmap <leader>f <Plug>(coc-format-selected)
+
+"  Symbol renaming.
+nmap <leader>n <Plug>(coc-rename)
+
+"  GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gy <Plug>(coc-type-definition)
+
+"  Writing Config
 let g:pencil#wrapModeDefault = 'soft'
 let s:write_mode = 0
-
 
 function! s:write_toggle()
     ToggleDitto
@@ -123,23 +140,33 @@ function! s:write_toggle()
     endif
 endfunction
 
-"Init writing related plugins with Goyo 
+" Init writing related plugins with Goyo 
 nmap <leader>g :Goyo<CR>
 autocmd! User GoyoEnter call s:write_toggle()
 autocmd! User GoyoLeave call s:write_toggle()
 
-"vim-ditto keymaps
+" vim-ditto keymaps
 nmap ]d <Plug>DittoNext
 nmap [d <Plug>DittoPrev
 nmap +d <Plug>DittoGood
 nmap _d <Plug>DittoBad
-nmap =d <Plug>DittoMore
-nmap -d <Plug>DittoLess
 
+" vimtex
+let g:tex_flavor='latex'
+let g:tex_conceal='abdmg'
+let g:vimtex_view_method='skim'
 
-"Filetype specific config
-if !exists("autocmds_loaded")
-    let autocmds_loaded = 1
+" Reverse search
+" See https://jdhao.github.io/2019/03/26/nvim_latex_write_preview/
+" and https://jdhao.github.io/2021/02/20/inverse_search_setup_neovim_vimtex/
+function! SetServerName()
+    let cmd = printf("echo %s > /tmp/curnvimserver.txt", v:servername)
+    call system(cmd)
+endfunction
+
+" Filetype specific config
+augroup custom
+    autocmd!
     autocmd Filetype markdown,text noremap <buffer> K :!open dict:///<cword><cr> 
                 \ | setlocal wrap
     autocmd BufLeave if count(["markdown", "text"], &filetype) == 1 
@@ -151,4 +178,5 @@ if !exists("autocmds_loaded")
     autocmd Filetype python setlocal colorcolumn=100 
                 \ | nnoremap <buffer> <leader>p :execute ":!command python3 " . expand('%:p')<CR>
     autocmd Filetype ruby,yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
-endif
+    autocmd Filetype tex call SetServerName() | nnoremap <buffer> <leader>p <Plug>(vimtex-compile)
+augroup END

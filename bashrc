@@ -22,7 +22,11 @@ PATH="$PATH:$HOME/.rvm/bin"
 PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 PATH="/usr/local/opt/coreutils/libexec/gnubin/:$PATH"
 # TexLive
-export PATH=$PATH:"/usr/local/texlive/2021/bin/universal-darwin"
+PATH=$PATH:"/usr/local/texlive/2021/bin/universal-darwin"
+# Python packages installed with --user
+PATH=$PATH:$HOME/Library/Python/3.9/bin/
+
+export PATH
 
 # Custom Prompt
 rvm_prompt () {
