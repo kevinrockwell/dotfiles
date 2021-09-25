@@ -20,7 +20,9 @@ export GPG_TTY=$(tty)
 # Make path
 PATH="$PATH:$HOME/.rvm/bin"
 PATH="/usr/local/bin:/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/coreutils/libexec/gnubin/:$PATH"
+PATH="/usr/local/opt/coreutils/libexec/gnubin/:$PATH"
+# TexLive
+export PATH=$PATH:"/usr/local/texlive/2021/bin/universal-darwin"
 
 # Custom Prompt
 rvm_prompt () {

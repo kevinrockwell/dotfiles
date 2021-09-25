@@ -1,8 +1,6 @@
 alias v="nvim"
-alias f="echo rip in pieces"
 alias brewup='brew update && brew upgrade; brew cleanup; brew doctor'
 alias ls='ls --color=auto'
-alias primefact='/Users/kevinrockwell/Documents/random_crap/prime_fact'
 alias openxkcd='python -m webbrowser -t "https://c.xkcd.com/random/comic"'
 alias eject='diskutil eject'
 alias starwars="telnet towel.blinkenlights.nl"

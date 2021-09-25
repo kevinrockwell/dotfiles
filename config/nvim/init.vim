@@ -30,6 +30,7 @@ set nowrap
 set number relativenumber
 set pyxversion=3
 set smartindent
+set spellfile=~/.config/nvim/spell/en.utf-8.add
 set termguicolors
 set updatetime=100
 
@@ -110,8 +111,8 @@ let s:write_mode = 0
 
 
 function! s:write_toggle()
-    PencilToggle
     ToggleDitto
+    PencilToggle
     let s:write_mode = ! s:write_mode
     if s:write_mode
         Limelight
