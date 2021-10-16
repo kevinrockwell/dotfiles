@@ -1,11 +1,9 @@
 # Basic Config
-CC="/usr/local/bin/gcc-10"
 CLICOLOR=1
-CXX="/usr/local/bin/g++-10"
 EDITOR="/usr/local/bin/nvim"
 LSCOLORS="gxcxBxDxexxxxxaBxBhghGh"
 NVM_DIR="$HOME/.nvm"
-export CC CLICOLOR CXX EDITOR LSCOLORS NVM_DIR
+export CLICOLOR EDITOR LSCOLORS NVM_DIR
 
 # Bash Settings
 HISTCONTROL=erasedups
@@ -17,12 +15,13 @@ export HISTCONTROL HISTFILESIZE HISTSIZE PROMPT_COMMAND
 # Make pinentry work for unlocking GPG keys
 export GPG_TTY=$(tty)
 
-# Make path
+# Make PATH
 PATH="$PATH:$HOME/.rvm/bin"
 PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+# Use coreutils
 PATH="/usr/local/opt/coreutils/libexec/gnubin/:$PATH"
-# TexLive
-PATH=$PATH:"/usr/local/texlive/2021/bin/universal-darwin"
+# Updated llvm, including clangd
+PATH="/usr/local/opt/llvm/bin:$PATH"
 # Python packages installed with --user
 PATH=$PATH:$HOME/Library/Python/3.9/bin/
 

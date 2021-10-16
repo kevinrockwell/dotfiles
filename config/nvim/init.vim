@@ -32,17 +32,21 @@ set nowrap
 set number relativenumber
 set pyxversion=3
 set smartindent
+set smartcase
 set spellfile=~/.config/nvim/spell/en.utf-8.add
-set termguicolors
 set updatetime=100
 
-syntax enable
-syntax on
+if (has("termguicolors"))
+    set termguicolors
+endif
 
-"set python version to system default
+syntax enable
+
+" set python version to system default
+" TODO look at making this more constant so python updates don't
+" immediately break things
 let g:python3_host_prog="/usr/local/bin/python3"
 
-" Use spaces instead of tabs
 set expandtab
 set shiftwidth=4
 set tabstop=4
@@ -55,9 +59,11 @@ nmap <C-p> :FZF<cr>
 nmap <leader>, :bprev<cr>
 nmap <leader>. :bnext<cr>
 nmap <leader>w :bdel<cr>
-nmap <leader>l :execute ":!command black '" . expand('%:p') . "'"<CR>
 nmap <leader>o :setlocal spell! spelllang=en_us<CR>
-nmap <leader>p :w<CR>:execute ":!command pandoc '" . expand('%:p') . "' --from=gfm --pdf-engine=wkhtmltopdf --output '" . expand('%:r') . ".pdf' && displayline 1 '" . expand('%:r') . ".pdf'"<CR>
+nmap <leader>p :w<CR>:execute ":!command pandoc '" . expand('%:p') . "' 
+            \ --from=gfm --pdf-engine=pdflatex --output '" . expand('%:r') 
+            \ . ".pdf' && displayline 1 '" 
+            \ . expand('%:r') . ".pdf'"<CR>
 nmap <leader>r :RainbowToggle<CR>
 nmap <leader>s :w<CR>:source %<CR>
 nnoremap C "_C
@@ -102,9 +108,10 @@ endfunction
 " Disable rainbow parentheses by default
 let g:rainbow_active=0
 
-" coc
+" coc.nvim
 " Confirm first item on <cr> if nothing is selected
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
+            \ "\<C-g>u\<CR>"
 
 " Use tab to navigate completion list
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -125,11 +132,16 @@ nmap <silent> gy <Plug>(coc-type-definition)
 
 "  Writing Config
 let g:pencil#wrapModeDefault = 'soft'
+let g:pencil#autoformat = 0
 let s:write_mode = 0
 
 function! s:write_toggle()
     ToggleDitto
     PencilToggle
+    if &filetype == "tex"
+        let g:pencil#wrapModeDefault = 'hard'
+        set conceallevel=0
+    endif
     let s:write_mode = ! s:write_mode
     if s:write_mode
         Limelight
@@ -137,13 +149,15 @@ function! s:write_toggle()
     else
         Limelight!
         setlocal nospell
+        let g:pencil#wrapModeDefault = 'soft' " Reset write mode for non tex files
     endif
 endfunction
 
 " Init writing related plugins with Goyo 
 nmap <leader>g :Goyo<CR>
-autocmd! User GoyoEnter call s:write_toggle()
-autocmd! User GoyoLeave call s:write_toggle()
+autocmd User GoyoEnter call s:write_toggle()
+autocmd User GoyoLeave call s:write_toggle()
+
 
 " vim-ditto keymaps
 nmap ]d <Plug>DittoNext
@@ -153,7 +167,7 @@ nmap _d <Plug>DittoBad
 
 " vimtex
 let g:tex_flavor='latex'
-let g:tex_conceal='abdmg'
+let g:vimtex_syntax_conceal_default = 0
 let g:vimtex_view_method='skim'
 
 " Reverse search
@@ -165,6 +179,7 @@ function! SetServerName()
 endfunction
 
 " Filetype specific config
+" TODO Organize autocmds better
 augroup custom
     autocmd!
     autocmd Filetype markdown,text noremap <buffer> K :!open dict:///<cword><cr> 
@@ -178,5 +193,5 @@ augroup custom
     autocmd Filetype python setlocal colorcolumn=100 
                 \ | nnoremap <buffer> <leader>p :execute ":!command python3 " . expand('%:p')<CR>
     autocmd Filetype ruby,yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
-    autocmd Filetype tex call SetServerName() | nnoremap <buffer> <leader>p <Plug>(vimtex-compile)
+    autocmd Filetype tex call SetServerName() | set conceallevel=0
 augroup END
