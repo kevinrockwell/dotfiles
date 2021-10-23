@@ -68,7 +68,11 @@ nmap <leader>r :RainbowToggle<CR>
 nmap <leader>s :w<CR>:source %<CR>
 nnoremap C "_C
 nnoremap c "_c
+nnoremap J mzJ`z
+nnoremap n nzz
+nnoremap N Nzz
 nnoremap x "_x
+nnoremap Y y$
 vnoremap c "_c
 vnoremap x "_x
 vmap D "_d

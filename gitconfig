@@ -1,8 +1,4 @@
 # This is Git's per-user configuration file.
-#[user]
-# Please adapt and uncomment the following lines:
-#	name = Kevin Rockwell
-#	email = kevin.n.rockwell@gmail.com
 [user]
 	email = 55220125+kevinrockwell@users.noreply.github.com
 	name = kevinrockwell

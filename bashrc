@@ -1,8 +1,8 @@
 # Basic Config
 CLICOLOR=1
-EDITOR="/usr/local/bin/nvim"
 LSCOLORS="gxcxBxDxexxxxxaBxBhghGh"
 NVM_DIR="$HOME/.nvm"
+[[ -n `which nvim` ]] && EDITOR=nvim || EDITOR=vim
 export CLICOLOR EDITOR LSCOLORS NVM_DIR
 
 # Bash Settings
@@ -16,7 +16,7 @@ export HISTCONTROL HISTFILESIZE HISTSIZE PROMPT_COMMAND
 export GPG_TTY=$(tty)
 
 # Make PATH
-PATH="$PATH:$HOME/.rvm/bin"
+[[ -d $HOME/.rvm/bin/ ]] && PATH="$PATH:$HOME/.rvm/bin"
 PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 # Use coreutils
 PATH="/usr/local/opt/coreutils/libexec/gnubin/:$PATH"
@@ -29,6 +29,7 @@ export PATH
 
 # Custom Prompt
 rvm_prompt () {
+    [[ -x ~/.rvm/bin/rvm-prompt ]] || printf ""; return 0
     local prompt=$(~/.rvm/bin/rvm-prompt)
     [[ -n $prompt && 1 -eq $USE_RVM_PROMPT ]] && printf " ${prompt}"
 }
@@ -44,4 +45,8 @@ source ~/.bash_aliases
 source ~/.bash_functions
 source ~/.bash_completion
 
-neofetch
+if [[ -n `which neofetch` ]]
+then
+    [[ -n `which lolcat` ]] && neofetch | lolcat  -F 0.05 -S 40 || neofetch
+fi
+
