@@ -2,8 +2,7 @@
 CLICOLOR=1
 LSCOLORS="gxcxBxDxexxxxxaBxBhghGh"
 NVM_DIR="$HOME/.nvm"
-[[ -n `which nvim` ]] && EDITOR=nvim || EDITOR=vim
-export CLICOLOR EDITOR LSCOLORS NVM_DIR
+export CLICOLOR LSCOLORS NVM_DIR
 
 # Bash Settings
 HISTCONTROL=erasedups
@@ -26,6 +25,9 @@ PATH="/usr/local/opt/llvm/bin:$PATH"
 PATH=$PATH:$HOME/Library/Python/3.9/bin/
 
 export PATH
+
+[[ -n `which nvim` ]] && EDITOR=nvim || EDITOR=vim
+export EDITOR
 
 # Custom Prompt
 rvm_prompt () {

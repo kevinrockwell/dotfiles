@@ -60,12 +60,12 @@ nmap <leader>, :bprev<cr>
 nmap <leader>. :bnext<cr>
 nmap <leader>w :bdel<cr>
 nmap <leader>o :setlocal spell! spelllang=en_us<CR>
-nmap <leader>p :w<CR>:execute ":!command pandoc '" . expand('%:p') . "' 
-            \ --from=gfm --pdf-engine=pdflatex --output '" . expand('%:r') 
-            \ . ".pdf' && displayline 1 '" 
-            \ . expand('%:r') . ".pdf'"<CR>
+nmap <leader>p :w<CR>:execute ":!command pandoc '" . expand('%:p') . "'
+            \ --from=gfm --pdf-engine=pdflatex --output '" . expand('%:r')
+            \ . ".pdf' && displayline 1 '" . expand('%:r') . ".pdf'"<CR>
 nmap <leader>r :RainbowToggle<CR>
 nmap <leader>s :w<CR>:source %<CR>
+nnoremap <leader>0 ^
 nnoremap C "_C
 nnoremap c "_c
 nnoremap J mzJ`z
@@ -129,10 +129,10 @@ vmap <leader>f <Plug>(coc-format-selected)
 nmap <leader>n <Plug>(coc-rename)
 
 "  GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gd m`<Plug>(coc-definition)
+nmap <silent> gi m`<Plug>(coc-implementation)
+nmap <silent> gr m`<Plug>(coc-references)
+nmap <silent> gy m`<Plug>(coc-type-definition)
 
 "  Writing Config
 let g:pencil#wrapModeDefault = 'soft'
@@ -157,7 +157,7 @@ function! s:write_toggle()
     endif
 endfunction
 
-" Init writing related plugins with Goyo 
+" Init writing related plugins with Goyo
 nmap <leader>g :Goyo<CR>
 autocmd User GoyoEnter call s:write_toggle()
 autocmd User GoyoLeave call s:write_toggle()
@@ -171,7 +171,7 @@ nmap _d <Plug>DittoBad
 
 " vimtex
 let g:tex_flavor='latex'
-let g:vimtex_syntax_conceal_default = 0
+let g:vimtex_syntax_conceal_disabled = 1
 let g:vimtex_view_method='skim'
 
 " Reverse search
@@ -186,16 +186,18 @@ endfunction
 " TODO Organize autocmds better
 augroup custom
     autocmd!
-    autocmd Filetype markdown,text noremap <buffer> K :!open dict:///<cword><cr> 
+    autocmd Filetype markdown,text noremap <buffer> K :!open dict:///<cword><cr>
                 \ | setlocal wrap
-    autocmd BufLeave if count(["markdown", "text"], &filetype) == 1 
-                \ | setlocal nowrap 
-                \ | nunmap K 
+    autocmd BufLeave if count(["markdown", "text"], &filetype) == 1
+                \ | setlocal nowrap
+                \ | nunmap K
                 \ | endif
     autocmd Filetype gitcommit setlocal spell spelllang=en_us
     autocmd Filetype haml setlocal tabstop=4 softtabstop=4
-    autocmd Filetype python setlocal colorcolumn=100 
+    autocmd Filetype python setlocal colorcolumn=100
                 \ | nnoremap <buffer> <leader>p :execute ":!command python3 " . expand('%:p')<CR>
     autocmd Filetype ruby,yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
-    autocmd Filetype tex call SetServerName() | set conceallevel=0
+    autocmd Filetype tex call SetServerName() | set conceallevel=0 | nnoremap <buffer> g<C-g> :VimtexCountWords<cr>
+    autocmd Filetype make setlocal noexpandtab
+    autocmd BufLeave if &filetype == "make" | setlocal expandtab | endif
 augroup END
