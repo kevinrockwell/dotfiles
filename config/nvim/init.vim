@@ -48,8 +48,8 @@ syntax enable
 let g:python3_host_prog="/usr/local/bin/python3"
 
 set expandtab
-set shiftwidth=4
 set tabstop=4
+set shiftwidth=0
 
 colorscheme iceberg
 highlight ColorColumn ctermbg=235 guibg=#1e2132
@@ -200,4 +200,6 @@ augroup custom
     autocmd Filetype tex call SetServerName() | set conceallevel=0 | nnoremap <buffer> g<C-g> :VimtexCountWords<cr>
     autocmd Filetype make setlocal noexpandtab
     autocmd BufLeave if &filetype == "make" | setlocal expandtab | endif
+    autocmd Filetype c,cpp setlocal tabstop=2 softtabstop=2
+    autocmd Filetype cpp setlocal tabstop=2 softtabstop=2
 augroup END

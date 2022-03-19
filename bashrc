@@ -47,8 +47,9 @@ source ~/.bash_aliases
 source ~/.bash_functions
 source ~/.bash_completion
 
-if [[ -n `which neofetch` ]]
-then
-    [[ -n `which lolcat` ]] && neofetch | lolcat  -F 0.05 -S 40 || neofetch
-fi
+# if [[ -n `which neofetch` ]]
+# then
+#     # [[ -n `which lolcat` ]] && neofetch | lolcat  -F 0.05 -S 40 || neofetch
+#     neofetch
+# fi
 

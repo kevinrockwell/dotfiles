@@ -6,7 +6,7 @@
     // "python.formatting.blackArgs": ["-l", "100", "-S"],
     "python.formatting.provider": "black",
     "python.jediPath": "/Users/kev/Library/Python/3.8/lib/python/site-packages",
-    // "python.linting.pylintPath": "/usr/local/bin/pylint",
+    "python.linting.pylintPath": "/usr/local/bin/pylint",
     // coc-solargraph
     "solargraph.commandPath": "/Users/kevinrockwell/.rvm/gems/ruby-2.7.0/bin/solargraph",
     // coc-yaml

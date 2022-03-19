@@ -13,3 +13,8 @@ venv/
 .venv/
 .idea/
 config/.mono
+*.o
+*.out
+*.dSYM
+*.zip
+*.tar
