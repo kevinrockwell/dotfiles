@@ -18,3 +18,4 @@ config/.mono
 *.dSYM
 *.zip
 *.tar
+*.cache/

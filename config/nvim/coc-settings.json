@@ -1,4 +1,5 @@
 {
+    "clangd.arguments": ["-fallback-style=google", "--clang-tidy"],
     "codeLens.enable": true,
     "npm.binPath": "/usr/local/bin/npm",
     // coc-python

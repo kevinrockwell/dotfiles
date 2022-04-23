@@ -21,7 +21,7 @@ window:
     columns: 80
     lines: 24
 
-  opacity: 1
+  opacity: .8
 
   # Window position (changes require restart)
   #

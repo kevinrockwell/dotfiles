@@ -4,6 +4,9 @@ LSCOLORS="gxcxBxDxexxxxxaBxBhghGh"
 NVM_DIR="$HOME/.nvm"
 export CLICOLOR LSCOLORS NVM_DIR
 
+# Don't cleanup brew installs
+export HOMEBREW_NO_INSTALL_CLEANUP=1
+
 # Bash Settings
 HISTCONTROL=erasedups
 HISTFILESIZE=
